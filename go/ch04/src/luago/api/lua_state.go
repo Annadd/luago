@@ -10,6 +10,7 @@ type LuaState interface {
 	Pop(n int)
 	Copy(fromIdx, toIdx int)
 	PushValue(idx int)
+	Replace(idx int)
 	Insert(idx int)
 	Remove(idx int)
 	Rotate(idx, n int)

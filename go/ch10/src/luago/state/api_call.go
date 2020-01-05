@@ -80,7 +80,7 @@ func (self *luaState) callGoClosure(nArgs, nResults int, c *closure) {
 	r := c.goFunc(self)
 	self.popLuaStack()
 
-	if nResults == 0 {
+	if nResults != 0 {
 		results := newStack.popN(r)
 		self.stack.check(len(results))
 		self.stack.pushN(results, nResults)

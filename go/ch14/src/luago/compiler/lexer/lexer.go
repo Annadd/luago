@@ -28,7 +28,7 @@ type Lexer struct {
 }
 
 func NewLexer(chunk, chunkName string) *Lexer {
-	return &Lexer{chunk, chunkName, 0, "", 0, 0}
+	return &Lexer{chunk, chunkName, 1, "", 0, 0}
 }
 
 func (self *Lexer) Line() int {
@@ -207,9 +207,9 @@ func (self *Lexer) NextToken() (line, kind int, token string) {
 	if c == '_' || isLetter(c) {
 		token := self.scanIdentifier()
 		if kind, found := keywords[token]; found {
-			return line, kind, token // keyword
+			return self.line, kind, token // keyword
 		} else {
-			return line, TOKEN_IDENTIFIER, token
+			return self.line, TOKEN_IDENTIFIER, token
 		}
 	}
 
